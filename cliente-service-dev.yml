@@ -7,3 +7,13 @@ spring:
     url: jdbc:mysql://localhost:3306/bd_cliente_dev
     username: root
     password: ""
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      pedidoService:
+        registerHealthIndicator: true
+        slidingWindowSize: 5
+        minimumNumberOfCalls: 3
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
